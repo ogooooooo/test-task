@@ -14,19 +14,15 @@ type Text struct {
 }
 
 func (t *Text) textModifier() {
-	// 1. Удаление лишних пробелов
+	
 	t.Content = strings.Join(strings.Fields(t.Content), " ")
 
-	// 2. Обработка знака минус (-)
 	t.Content = processMinus(t.Content)
 
-	// 3. Замена знака плюс (+) на восклицательный знак (!)
 	t.Content = strings.ReplaceAll(t.Content, "+", "!")
 
-	// 4. Сумма цифр и удаление их из текста
 	sum := sumAndRemoveDigits(&t.Content)
 
-	// Формирование итогового результата
 	if sum > 0 {
 		t.Content += fmt.Sprintf(" %d", sum)
 	}
@@ -65,6 +61,6 @@ func main() {
 	for scanner.Scan() {
 		text.Content = scanner.Text()
 		text.textModifier()
-		break // Выход из цикла после первого ввода
+		break 
 	}
 }
